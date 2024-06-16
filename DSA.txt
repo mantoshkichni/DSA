@@ -315,3 +315,155 @@ class Pair{
     }
 }
 ------------------------------------------------------------------------------------------------------------------------------
+4>
+------------------------------
+Distance from the Source (Bellman-Ford Algorithm)
+MediumAccuracy: 48.11%Submissions: 100K+Points: 4
+Be the comment of the day in POTD and win a GfG T-Shirt!
+Solve right now
+
+banner
+Given a weighted and directed graph of V vertices and E edges, Find the shortest distance of all the vertex's from the source vertex S. If a vertices can't be reach from the S then mark the distance as 10^8. Note: If the Graph contains a negative cycle then return an array consisting of only -1.
+
+Example 1:
+
+Input:
+
+E = [[0,1,9]]
+S = 0
+Output:
+0 9
+Explanation:
+Shortest distance of all nodes from
+source is printed.
+Example 2:
+
+Input:
+
+E = [[0,1,5],[1,0,3],[1,2,-1],[2,0,1]]
+S = 2
+Output:
+1 6 0
+Explanation:
+For nodes 2 to 0, we can follow the path-
+2-0. This has a distance of 1.
+For nodes 2 to 1, we cam follow the path-
+2-0-1, which has a distance of 1+5 = 6,
+--------------------------------------------------
+class Solution {
+    static int[] bellman_ford(int V, ArrayList<ArrayList<Integer>> edges, int S) {
+        // Write your code here
+        int[] dist=new int[V];
+        Arrays.fill(dist,100000000);
+        dist[S]=0;
+        for(int i=0;i<V;i++)
+        {
+            for(int j=0;j<edges.size();j++)
+            {
+                int source=edges.get(j).get(0);
+                int dest=edges.get(j).get(1);
+                int cost=edges.get(j).get(2);
+                if(dist[source]!=100000000 &&   dist[dest]>dist[source]+cost)
+                {
+                    dist[dest]=dist[source]+cost;
+                }
+            }
+        }
+        for(int j=0;j<edges.size();j++)
+            {
+                int source=edges.get(j).get(0);
+                int dest=edges.get(j).get(1);
+                int cost=edges.get(j).get(2);
+                if(dist[source]!=100000000 &&  dist[dest]>dist[source]+cost)
+                {
+                    return new int[] {-1};
+                }
+            }
+            return dist;
+    }
+}
+---------------------------------------------------------------------------------------------------------------------------
+5>
+-----------------------------------
+Minimum Spanning Tree
+MediumAccuracy: 47.82%Submissions: 117K+Points: 4
+Be the comment of the day in POTD and win a GfG T-Shirt!
+Solve right now
+
+banner
+Given a weighted, undirected, and connected graph with V vertices and E edges, your task is to find the sum of the weights of the edges in the Minimum Spanning Tree (MST) of the graph. The graph is represented by an adjacency list, where each element adj[i] is a vector containing pairs of integers. Each pair represents an edge, with the first integer denoting the endpoint of the edge and the second integer denoting the weight of the edge.
+
+Example 1:
+
+Input:
+3 3
+0 1 5
+1 2 3
+0 2 1
+
+Output:
+4
+Explanation:
+
+The Spanning Tree resulting in a weight
+of 4 is shown above.
+Example 2:
+
+Input:
+2 1
+0 1 5
+
+Output:
+5
+Explanation:
+Only one Spanning Tree is possible
+which has a weight of 5.
+ 
+
+Your task:
+Since this is a functional problem you don't have to worry about input, you just have to complete the function spanningTree() which takes a number of vertices V and an adjacency list adj as input parameters and returns an integer denoting the sum of weights of the edges of the Minimum Spanning Tree. Here adj[i] contains vectors of size 2, where the first integer in that vector denotes the end of the edge and the second integer denotes the edge weight.
+
+Expected Time Complexity: O(ElogV).
+Expected Auxiliary Space: O(V2).
+---------------------------------------------------------------------------------
+class Solution {
+    static int spanningTree(int V, int E, List<List<int[]>> adj) {
+        // Code Here.
+        int count=0;
+        int dist[]= new int[V];
+        Arrays.fill(dist,Integer.MAX_VALUE);
+        PriorityQueue<Pair> queue=new PriorityQueue<>((x1,x2)->x1.cost-x2.cost);
+        boolean[] visited=new boolean[V];
+        queue.add(new Pair(0,0));
+        while(!queue.isEmpty())
+        {
+            int node=queue.peek().node;
+            int cost=queue.peek().cost;
+            queue.poll();
+            if(visited[node]) continue;
+            visited[node]=true;
+            count=count+cost;
+            for(int[] temp:adj.get(node))
+            {
+                int currNode=temp[0];
+                int currCost=temp[1];
+                if( !visited[currNode])
+                {
+                    queue.add(new Pair(currNode,currCost));
+                    
+                }
+            }
+        }
+        return count;
+        
+    }
+}
+class Pair{
+    int node,cost;
+    Pair(int node,int cost)
+    {
+        this.node=node;
+        this.cost=cost;
+    }
+}
+--------------------------------------------------------------------------------------------------------------------------
