@@ -463,7 +463,15 @@ class Pair{
     Pair(int node,int cost)
     {
         this.node=node;
-        this.cost=cost;
+        this.cost=cost; 
     }
 }
 --------------------------------------------------------------------------------------------------------------------------
+                       -------------------------
+-----------------------|Why Use a PriorityQueue? |---------------
+                       -------------------------
+Minimizing Edge Cost: The priority queue always extracts the node with the smallest edge cost first. This is essential for Prim's algorithm, which greedily selects the smallest edge connecting the growing MST to a new vertex.
+Efficient Access: The priority queue allows efficient access to the smallest element (logarithmic time complexity), making the algorithm efficient.
+Dynamic Edge Selection: As new edges are explored, they are dynamically added to the priority queue, ensuring that the smallest edge is always considered next.
+In summary, the PriorityQueue is crucial for maintaining the edges to be considered and ensuring that the next smallest edge is always selected efficiently, which is the core of Prim's algorithm for finding the MST.
+   ---------------   ----------------  ------------------   ------------------   ----------------   --------------   --------------   ----------------   --------------   -----------------   ----------------  --------------------
