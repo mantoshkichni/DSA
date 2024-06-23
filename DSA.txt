@@ -912,5 +912,61 @@ class Solution
     }
 }
 -------------------------------------------------------------------------------------------------------------------------------------------
+11
+-------------------------------
+Directed Graph Cycle
+Difficulty: MediumAccuracy: 27.88%Submissions: 371K+Points: 4
+Given a Directed Graph with V vertices (Numbered from 0 to V-1) and E edges, check whether it contains any cycle or not.
 
 
+Example 1:
+
+Input:
+
+
+
+Output: 1
+Explanation: 3 -> 3 is a cycle
+
+Example 2:
+
+Input:
+
+
+Output: 0
+Explanation: no cycle in the graph
+-------------------------------------------------------------------------
+class Solution {
+    // Function to detect cycle in a directed graph.
+    public boolean isCyclic(int V, ArrayList<ArrayList<Integer>> adj) {
+        // code here
+        boolean[] visited=new boolean[adj.size()];
+        boolean[] pathVisited=new boolean[adj.size()];
+        for(int i=0;i<adj.size();i++)
+        {
+            if(visited[i]==false)
+            {
+                if(dfs(i,visited,pathVisited,adj)==true)
+                return true;
+            }
+        }
+        return false;
+    }
+    boolean dfs(int node,boolean[] visited,boolean[] pathVisited,ArrayList<ArrayList<Integer>> adj)
+    {
+        visited[node]=true;
+        pathVisited[node]=true;
+        for(Integer currNode:adj.get(node))
+        {
+            if(visited[currNode]==false){
+                if(dfs(currNode,visited,pathVisited,adj)) return true;
+            }
+            else if(pathVisited[currNode])
+            return true;
+        }
+        pathVisited[node]=false;
+        return false;
+    }
+}
+
+-------------------------------------------------------------------------------------------------------------------------------------------
