@@ -970,3 +970,92 @@ class Solution {
 }
 
 -------------------------------------------------------------------------------------------------------------------------------------------
+def digit_sum1(n):
+        return sum(int(digit) for digit in str(n))
+
+def solution(N):
+        target_sum1 = digit_sum1(N)
+    next_number1 = N + 1
+    
+    while digit_sum1(next_number1) != target_sum1:
+        next_number1 += 1
+    
+    return next_number1
+
+
+def min_water_tanks1(S):
+    n = len(S)
+    tanks_needed1 = 0
+    houses_covered1 = [False] * n
+    
+    for i in range(n):
+        if S[i] == 'H' and not houses_covered1[i]:
+            if i > 0 and S[i - 1] == '-':
+                # Place tank on the left
+                tanks_needed1 += 1
+                houses_covered1[i] = True
+                if i - 1 > 0 and S[i - 2] == 'H':
+                    houses_covered1[i - 2] = True
+            elif i < n - 1 and S[i + 1] == '-':
+                # Place tank on the right
+                tanks_needed1 += 1
+                houses_covered1[i] = True
+                if i + 1 < n - 1 and S[i + 2] == 'H':
+                    houses_covered1[i + 2] = True
+            else:
+                # No place to put a tank
+                return -1
+        elif S[i] == 'H' and houses_covered1[i]:
+            continue
+
+    return tanks_needed1
+
+
+    def min_water_tanks(S):
+    n = len(S)
+    tanks_needed = 0
+    houses_covered = [False] * n
+
+    for i in range(n):
+        if S[i] == 'H' and not houses_covered[i]:
+            if i > 0 and S[i - 1] == '-':
+                # Place tank on the left
+                tanks_needed += 1
+                houses_covered[i] = True
+                houses_covered[i - 1] = True
+                if i - 1 > 0 and S[i - 2] == 'H':
+                    houses_covered[i - 2] = True
+            elif i < n - 1 and S[i + 1] == '-':
+                # Place tank on the right
+                tanks_needed += 1
+                houses_covered[i] = True
+                houses_covered[i + 1] = True
+                if i + 2 < n and S[i + 2] == 'H':
+                    houses_covered[i + 2] = True
+            else:
+                # No place to put a tank
+                return -1
+
+    return tanks_needed
+
+# Test cases
+print(min_water_tanks("H-H-HH--"))  # Expected output: 2
+print(min_water_tanks("H"))          # Expected output: -1
+print(min_water_tanks("HH-HH"))      # Expected output: -1
+print(min_water_tanks("-H-H-H-H-H-"))  # Expected output: 3
+
+# Additional test cases
+print(min_water_tanks("--H--"))  # Expected output: 1
+print(min_water_tanks("-H-H-"))  # Expected output: 2
+print(min_water_tanks("H-H-H"))  # Expected output: 2
+print(min_water_tanks("HH-H"))  # Expected output: -1
+print(min_water_tanks("H---H"))  # Expected output: 2
+print(min_water_tanks("-HHH-"))  # Expected output: 2
+print(min_water_tanks("H-H--H-H"))  # Expected output: 3
+print(min_water_tanks("H-H-H-H-H"))  # Expected output: 3
+print(min_water_tanks("H----H"))  # Expected output: 2
+print(min_water_tanks("---"))  # Expected output: 0
+
+
+
+
