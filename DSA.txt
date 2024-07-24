@@ -1067,3 +1067,7 @@ print(min_water_tanks("---"))  # Expected output: 0
 
 
 
+
+
+
+
