@@ -1144,6 +1144,39 @@ print(min_water_tanks("---"))  # Expected output: 0
 
 
 
+              if i + 2 < n and S[i + 2] == 'H':
+                    houses_covered[i + 2] = True
+            else:
+                # No place to put a tank
+                return -1
+
+    return tanks_needed
+
+# Test cases
+print(min_water_tanks("H-H-HH--"))  # Expected output: 2
+print(min_water_tanks("H"))          # Expected output: -1
+print(min_water_tanks("HH-HH"))      # Expected output: -1
+print(min_water_tanks("-H-H-H-H-H-"))  # Expected output: 3
+
+# Additional test cases
+print(min_water_tanks("--H--"))  # Expected output: 1
+print(min_water_tanks("-H-H-"))  # Expected output: 2
+print(min_water_tanks("H-H-H"))  # Expected output: 2
+print(min_water_tanks("HH-H"))  # Expected output: -1
+print(min_water_tanks("H---H"))  # Expected output: 2
+print(min_water_tanks("-HHH-"))  # Expected output: 2
+print(min_water_tanks("H-H--H-H"))  # Expected output: 3
+print(min_water_tanks("H-H-H-H-H"))  # Expected output: 3
+print(min_water_tanks("H----H"))  # Expected output: 2
+print(min_water_tanks("---"))  # Expected output: 0
+
+
+
+
+
+
+
+
 
 
 
