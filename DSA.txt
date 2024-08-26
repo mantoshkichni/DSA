@@ -1170,6 +1170,19 @@ print(min_water_tanks("H-H-H-H-H"))  # Expected output: 3
 print(min_water_tanks("H----H"))  # Expected output: 2
 print(min_water_tanks("---"))  # Expected output: 0
 
+# Additional test cases
+print(min_water_tanks("--H--"))  # Expected output: 1
+print(min_water_tanks("-H-H-"))  # Expected output: 2
+print(min_water_tanks("H-H-H"))  # Expected output: 2
+print(min_water_tanks("HH-H"))  # Expected output: -1
+print(min_water_tanks("H---H"))  # Expected output: 2
+print(min_water_tanks("-HHH-"))  # Expected output: 2
+print(min_water_tanks("H-H--H-H"))  # Expected output: 3
+print(min_water_tanks("H-H-H-H-H"))  # Expected output: 3
+print(min_water_tanks("H----H"))  # Expected output: 2
+print(min_water_tanks("---"))  # Expected output: 0
+
+
 
 
 
